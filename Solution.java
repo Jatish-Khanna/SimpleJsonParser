@@ -11,7 +11,7 @@ class Solution {
 
 	public static void main(String[] args) {
 		Optional<Employee> employee = Optional.empty(); // = employeeDeserialization.parseEmployeeResource();
-		try (Resource reader = new FileStreamResource("stats_json")) {
+		try (ReaderResource reader = new FileStreamResource("stats_json")) {
 			EmployeeGSONDeserialization employeeDeserialization = new EmployeeGSONDeserialization(reader);
 			employee = employeeDeserialization.parseEmployeeResource();
 			if (employee.isPresent()) {
