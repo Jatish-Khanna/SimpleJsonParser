@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
 
@@ -24,7 +25,7 @@ class EmployeeGSONSerialization {
 
 		try {
 			if (resourceStream.isPresent()) {
-				Gson gson = new Gson();
+				new GsonBuilder().setPrettyPrinting().create();
 				resourceStream.get().write(gson.toJson(employee));
 			} else {
 				throw new JsonIOException("Error! while writing object to resource");
