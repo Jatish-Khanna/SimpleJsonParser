@@ -25,7 +25,9 @@ class EmployeeGSONSerialization {
 
 		try {
 			if (resourceStream.isPresent()) {
-				new GsonBuilder().setPrettyPrinting().create();
+				// Helps to build string with newlines/line feeds in readable mode
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				// Gson gson = new Gson();
 				resourceStream.get().write(gson.toJson(employee));
 			} else {
 				throw new JsonIOException("Error! while writing object to resource");
