@@ -4,10 +4,10 @@ import java.util.Optional;
 import com.google.gson.Gson;
 
 public class EmployeeGSONDeserialization {
-	Resource reader;
+	ReaderResource reader;
 	Employee employee;
 
-	public EmployeeGSONDeserialization(Resource reader) {
+	public EmployeeGSONDeserialization(ReaderResource reader) {
 		this.reader = reader;
 	}
 
