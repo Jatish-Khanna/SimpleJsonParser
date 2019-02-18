@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class FileStreamResource implements Resource {
+public class FileStreamResource implements ReaderResource {
 	String resourceLocation;
 	InputStreamReader streamReader;
 	Logger logger = Logger.getLogger(this.getClass().getName());
