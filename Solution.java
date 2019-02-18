@@ -10,9 +10,10 @@ class Solution {
 	static Logger logger = Logger.getLogger(Solution.class.getName());
 
 	public static void main(String[] args) {
+		Optional<Employee> employee = Optional.empty(); // = employeeDeserialization.parseEmployeeResource();
 		try (Resource reader = new FileStreamResource("stats_json")) {
 			EmployeeGSONDeserialization employeeDeserialization = new EmployeeGSONDeserialization(reader);
-			Optional<Employee> employee = employeeDeserialization.parseEmployeeResource();
+			employee = employeeDeserialization.parseEmployeeResource();
 			if (employee.isPresent()) {
 				System.out.println(employee.get());
 			} else {
@@ -20,6 +21,15 @@ class Solution {
 			}
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
+		}
+
+		if (employee.isPresent()) {
+			try (WriterResource writer = new FileStreamResourceWriter("serialized_json")) {
+				EmployeeGSONSerialization serializeEmployee = new EmployeeGSONSerialization(writer, employee.get());
+				serializeEmployee.serializeEmployeeResource();
+			} catch (Exception e) {
+				logger.log(Level.SEVERE, e.getMessage(), e);
+			}
 		}
 	}
 }
